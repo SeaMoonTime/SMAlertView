@@ -99,12 +99,13 @@
     [keyWindow addSubview:frontView];
     
     [keyWindow addSubview:self];
-    self.center = [UIApplication sharedApplication].keyWindow.center;
-    self.alpha = 0;
-    self.transform = CGAffineTransformScale(self.transform,0.1,0.1);
+    self.center = keyWindow.center;//此处已可以显示view了
+    ////以下为动画效果：先让view设为透明，size缩小为原来的0.1倍，然后通过动画恢复原有size，并设为不透明
+    self.alpha = 0;//让view设为透明
+    self.transform = CGAffineTransformScale(self.transform,0.1,0.1);//size缩小为原来的0.1倍
     [UIView animateWithDuration:AlertTime animations:^{
-        self.transform = CGAffineTransformIdentity;
-        self.alpha = 1;
+        self.transform = CGAffineTransformIdentity; //size设为原有的大小
+        self.alpha = 1;//设为不透明
     }];
 }
 
